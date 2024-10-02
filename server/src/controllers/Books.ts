@@ -19,10 +19,7 @@ export function getBookForId(id: string): Book | {} {
 
 export function saveBook(book: Book) {
     const books = getBooksRaw();
-    console.log(book);
-    console.log(books);
     books[book.id] = book;
-    console.log(books);
     fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
 }
 
