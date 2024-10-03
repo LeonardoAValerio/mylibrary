@@ -1,3 +1,3 @@
 export enum StatesBook {
-    READED, TOREAD, READING
+    TOREAD = "TOREAD", READED = "READED", READING = "READING"
 }

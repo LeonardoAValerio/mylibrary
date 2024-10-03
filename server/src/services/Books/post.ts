@@ -15,7 +15,7 @@ export class BookPostService {
         try {
             this.validateAttributes();
             saveBook(this.book);
-            return new Message("Book Saved!", 201);
+            return new Message("Book saved successfully", 201);
         } catch(e) {
             if(e instanceof CustomError) {
                 return new Message(e.message, 400);
@@ -25,8 +25,8 @@ export class BookPostService {
     }
 
     private validateAttributes() {
-        if(!this.book.title) throw new CustomError("Titulo necessário para o envio!");
+        if(!this.book.title) throw new CustomError("title is necessary");
         if(!this.book.id) this.book.id = Uuid.createUuid();
-        if(!Uuid.validateUuid(this.book.id)) throw new CustomError("ID inválido!");
+        if(!Uuid.validateUuid(this.book.id)) throw new CustomError("invalid ID");
     }
 }

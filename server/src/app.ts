@@ -1,9 +1,9 @@
 import { json } from "express";
 import express, { Request, Response } from 'express';
-import { getBookForId, getBooks, editBookForId } from './controllers/Books';
+import { getBookForId, getBooks } from './controllers/Books';
 import { BookPostService } from "./services/Books/post";
 import { Book } from "./models/Book";
-import { BookPatchService } from "./services/Books/patch";
+import { BookPutService } from "./services/Books/put";
 import cors from "cors";
 
 const app = express();
@@ -18,20 +18,21 @@ app.get("/books", (req: Request, res: Response) => {
 
 app.get("/books/:id", (req: Request, res: Response) => {
     const searchId = req.params.id as string;
-    const book = getBookForId(searchId);
+    const book = getBookForId(searchId) || {};
     res.send(book)
 });
 
 app.post("/books", (req: Request, res: Response) => {
-    const book  = new Book(req.body)
+    const book  = new Book(req.body);
     const bookService = new BookPostService(book);
     const msg = bookService.execute();
     res.status(msg.statusCode).send(msg);  
 });
 
-app.patch("/books/:id", (req: Request, res: Response) => {
+app.put("/books/:id", (req: Request, res: Response) => {
     const editId = req.params.id as string;
-    const bookService = new BookPatchService(editId, req.body);
+    const book = new Book(req.body);
+    const bookService = new BookPutService(editId, book);
     const msg = bookService.execute();
     res.status(msg.statusCode).send(msg);  
 });

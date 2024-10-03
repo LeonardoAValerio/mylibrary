@@ -3,13 +3,13 @@ import { StatesBook } from './StatesBookEnum';
 
 interface LivroAttributes {
     id: string,
-    idAuthors: string[],
+    idAuthors?: string[],
     title: string,
-    idCategories: string[],
-    status: StatesBook;
-    synopse: string,
-    review: string,
-    urlImage: string
+    idCategories?: string[],
+    status?: StatesBook;
+    synopse?: string,
+    review?: string,
+    urlImage?: string;
 }
 
 export class Book implements LivroAttributes {

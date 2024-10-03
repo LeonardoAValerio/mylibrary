@@ -12,23 +12,13 @@ export function getBooks(): Book[] {
     return Object.values(books);
 }
 
-export function getBookForId(id: string): Book | {} {
+export function getBookForId(id: string): Book | null {
     const books = getBooksRaw();
-    return books[id] || {};
+    return books[id] || null;
 }
 
 export function saveBook(book: Book) {
     const books = getBooksRaw();
     books[book.id] = book;
     fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
-}
-
-export function editBookForId(id: string, editedAttibrutes: any) {
-    const books = getBooksRaw();
-    const book = books[id];
-    for (const key in book) {
-        if (editedAttibrutes[key]) {
-            book[key] = editedAttibrutes[key];
-        }
-    }
 }
