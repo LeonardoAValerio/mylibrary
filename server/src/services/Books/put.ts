@@ -17,7 +17,7 @@ export class BookPutService {
 
     execute(): Message {
         try {
-            this.setAttributes();
+            //this.setAttributes();
             this.validateAttributes();
             saveBook(this.newAttributes);
             return new Message("Book updated successfully", 200);
@@ -29,15 +29,15 @@ export class BookPutService {
         }
     }
 
-    private setAttributes() {
-        if(!this.book) throw new CustomError("The book does not exist");
-        const keys = Object.keys(this.book);
-        keys.forEach((key) => {
-            if(!this.newAttributes[key]) {
-                this.newAttributes[key] = this.book[key];
-            }
-        });
-    }
+    // private setAttributes() {
+    //     if(!this.book) throw new CustomError("The book does not exist");
+    //     const keys = Object.keys(this.book);
+    //     keys.forEach((key) => {
+    //         if(!this.newAttributes[key]) {
+    //             this.newAttributes[key] = this.book[key];
+    //         }
+    //     });
+    // }
 
     private validateAttributes() {
         if(!this.newAttributes.title) throw new CustomError("title is necessary");
