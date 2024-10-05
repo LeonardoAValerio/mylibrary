@@ -1,32 +1,26 @@
-import { Uuid } from '../utils/Uuid';
+import { Uuid } from '../helpers/Uuid';
 import { StatesBook } from './StatesBookEnum';
 
-interface LivroAttributes {
-    id: string,
-    idAuthors?: string[],
-    title: string,
-    idCategories?: string[],
-    status?: StatesBook;
-    synopse?: string,
-    review?: string,
-    urlImage?: string;
-}
-
-export class Book implements LivroAttributes {
+export interface BookAttributes {
     id: string;
     title: string;
-    idAuthors: string[];
-    idCategories: string[];
+    synopse?: string;
+    review?: string;
+    urlImage?: string;
+    status?: StatesBook;
+}
+
+export class Book implements BookAttributes {
+    id: string;
+    title: string;
     status: StatesBook;
     synopse: string;
     review: string;
     urlImage: string;
 
-    constructor(atributtes: LivroAttributes) {
+    constructor(atributtes: BookAttributes) {
         this.id = atributtes.id;
         this.title = atributtes.title;
-        this.idAuthors = atributtes.idAuthors || [];
-        this.idCategories = atributtes.idCategories || [];
         this.status = atributtes.status || StatesBook.TOREAD;
         this.synopse = atributtes.synopse || "";
         this.review = atributtes.review || "";

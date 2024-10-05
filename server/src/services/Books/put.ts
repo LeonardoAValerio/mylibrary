@@ -1,8 +1,8 @@
 import { Book } from '../../models/Book'
 import { getBookForId, saveBook } from '../../controllers/Books';
 import { Message } from '../../models/Message';
-import { CustomError } from '../../utils/Error';
-import { Uuid } from '../../utils/Uuid';
+import { CustomError } from '../../helpers/Errors';
+import { Uuid } from '../../helpers/Uuid';
 
 export class BookPutService {
     private id: string;
