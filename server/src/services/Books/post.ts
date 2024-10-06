@@ -1,7 +1,7 @@
 import { Book } from '../../models/Book'
 import { getBooks, saveBook } from '../../controllers/Books';
 import { Message } from '../../models/Message';
-import { AjvErrors, CustomError } from '../../helpers/Errors';
+import { AjvErrors, checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
 import { validateBook } from '../../validators/Book/book.validator';
 import { Uuid } from '../../helpers/Uuid';
 
@@ -20,12 +20,7 @@ export class BookPostService {
             saveBook(this.book);
             return new Message("Book saved successfully", 201);
         } catch(e) {
-            if(e instanceof CustomError) {
-                return new Message(e.message, 400);
-            }else if(e instanceof AjvErrors) {
-                return new Message({message: e.message, errors: e.errors}, 400);
-            }
-            return new Message(e.message, 400);
+            return checkAndReturnMessageError(e);
         }
     }
 

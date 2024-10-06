@@ -1,8 +1,9 @@
 import { Book } from '../../models/Book'
 import { getBookForId, saveBook } from '../../controllers/Books';
 import { Message } from '../../models/Message';
-import { CustomError } from '../../helpers/Errors';
+import { checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
 import { Uuid } from '../../helpers/Uuid';
+import { validateBook } from '../../validators/Book/book.validator';
 
 export class BookPutService {
     private id: string;
@@ -17,32 +18,24 @@ export class BookPutService {
 
     execute(): Message {
         try {
-            //this.setAttributes();
-            this.validateAttributes();
+            this.setAttributes();
+            console.log(this.newAttributes)
+            validateBook(this.newAttributes);
             saveBook(this.newAttributes);
             return new Message("Book updated successfully", 200);
         }catch (e) {
-            if(e instanceof CustomError) {
-                return new Message(e.message, 400);
-            }
-            return new Message("Failed to update!", 400);
+            return checkAndReturnMessageError(e);
         }
     }
 
-    // private setAttributes() {
-    //     if(!this.book) throw new CustomError("The book does not exist");
-    //     const keys = Object.keys(this.book);
-    //     keys.forEach((key) => {
-    //         if(!this.newAttributes[key]) {
-    //             this.newAttributes[key] = this.book[key];
-    //         }
-    //     });
-    // }
-
-    private validateAttributes() {
-        if(!this.newAttributes.title) throw new CustomError("title is necessary");
-        if(!this.newAttributes.id) this.newAttributes.id = Uuid.createUuid();
-        if(!Uuid.validateUuid(this.newAttributes.id)) throw new CustomError("invalid ID");
+    private setAttributes() {
+        if(!this.book) throw new CustomError("The book does not exist");
+        const keys = Object.keys(this.book);
+        keys.forEach((key) => {
+            if(!this.newAttributes[key]) {
+                this.newAttributes[key] = this.book![key];
+            }
+        });
     }
 
 }
