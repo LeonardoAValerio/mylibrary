@@ -4,8 +4,8 @@ import { Book } from "../../components/Book"
 import './home.css'
 
 export interface BookAttributes {
-  id: string;
-  title: string;
+  id?: string;
+  title?: string;
   synopse?: string;
   review?: string;
   urlImage?: string;
