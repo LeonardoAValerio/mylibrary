@@ -1,5 +1,16 @@
+:root{
+    --backgroud-color: #282A36;
+    --menus-color: #6272A4;
+    --text-color: #F8F8F2;
+    --theme-color: #50FA7B;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    background-color: var(--backgroud-color);
 }

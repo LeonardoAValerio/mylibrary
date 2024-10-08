@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Book } from "../../components/Book"
+import { Book } from "../../components/Book/Book"
 import './home.css'
 
 export interface BookAttributes {
