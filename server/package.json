@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@types/express": "^5.0.0",
+    "@types/pg": "^8.11.10",
     "@types/uuid": "^10.0.0",
     "ajv": "^8.17.1",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
     "cors": "^2.8.5",
     "express": "^4.21.0",
+    "pg": "^8.13.0",
     "uuid": "^10.0.0"
   }
 }
