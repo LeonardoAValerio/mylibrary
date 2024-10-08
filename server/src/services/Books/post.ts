@@ -1,7 +1,7 @@
 import { Book } from '../../models/Book'
 import { getBooks, saveBook } from '../../controllers/Books';
 import { Message } from '../../models/Message';
-import { AjvErrors, checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
+import { checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
 import { validateBook } from '../../validators/Book/book.validator';
 import { Uuid } from '../../helpers/Uuid';
 

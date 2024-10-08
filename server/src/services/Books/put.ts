@@ -2,7 +2,6 @@ import { Book } from '../../models/Book'
 import { getBookForId, saveBook } from '../../controllers/Books';
 import { Message } from '../../models/Message';
 import { checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
-import { Uuid } from '../../helpers/Uuid';
 import { validateBook } from '../../validators/Book/book.validator';
 
 export class BookPutService {
@@ -29,7 +28,7 @@ export class BookPutService {
     }
 
     private setAttributes() {
-        if(!this.book) throw new CustomError("The book does not exist");
+        if(!this.book) throw new CustomError("Not found book");
         const keys = Object.keys(this.book);
         keys.forEach((key) => {
             if(!this.newAttributes[key]) {

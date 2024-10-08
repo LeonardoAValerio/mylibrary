@@ -22,3 +22,12 @@ export function saveBook(book: Book) {
     books[book.id] = book;
     fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
 }
+
+export function deleteBookForId(id: string) {
+    const books = getBooksRaw();
+    const bookToDelete = getBookForId(id);
+    if(bookToDelete) {
+        delete books[id];
+        fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
+    }
+}
