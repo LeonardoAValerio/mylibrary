@@ -1,7 +1,7 @@
 import Ajv, { JSONSchemaType } from 'ajv';
 import ajvErrors from 'ajv-errors';
 import { BookAttributes } from '../../models/Book';
-import { StatesBook } from '../../models/StatesBookEnum';
+import { StatesBook } from '../../helpers/StatesBookEnum';
 
 const ajv = new Ajv({
   allErrors: true,

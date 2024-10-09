@@ -1,5 +1,5 @@
 import { Uuid } from '../helpers/Uuid';
-import { StatesBook } from './StatesBookEnum';
+import { StatesBook } from '../helpers/StatesBookEnum';
 
 export interface BookAttributes {
     id: string;

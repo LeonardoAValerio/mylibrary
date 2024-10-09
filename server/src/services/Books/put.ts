@@ -1,6 +1,6 @@
 import { Book } from '../../models/Book'
 import { getBookForId, saveBook } from '../../controllers/Books';
-import { Message } from '../../models/Message';
+import { Message } from '../../helpers/Message';
 import { checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
 import { validateBook } from '../../validators/Book/book.validator';
 

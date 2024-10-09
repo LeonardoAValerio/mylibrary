@@ -1,5 +1,5 @@
 import { ErrorObject } from "ajv";
-import { Message } from "../models/Message";
+import { Message } from "./Message";
 
 export class CustomError extends Error {
     constructor(message: string) {
