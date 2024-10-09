@@ -1,5 +1,5 @@
 import { Book } from '../../models/Book'
-import { deleteBookForId, getBookForId } from '../../controllers/Books';
+
 import { Message } from '../../helpers/Message';
 import { checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
 
@@ -10,17 +10,17 @@ export class BookDeleteService {
         this.id = id;
     }
 
-    execute(): Message {
-        try {
-            this.validateBookId();
-            deleteBookForId(this.id);
-            return new Message("Book deleted successfully", 200);
-        } catch(e) {
-            return checkAndReturnMessageError(e);
-        }
-    }
+    // execute(): Message {
+    //     try {
+    //         this.validateBookId();
+    //         deleteBookForId(this.id);
+    //         return new Message("Book deleted successfully", 200);
+    //     } catch(e) {
+    //         return checkAndReturnMessageError(e);
+    //     }
+    // }
 
-    private validateBookId(): void {
-        if(!getBookForId(this.id)) throw new CustomError("Not found book");
-    }
+    // private validateBookId(): void {
+    //     if(!getBookForId(this.id)) throw new CustomError("Not found book");
+    // }
 }

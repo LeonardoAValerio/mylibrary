@@ -1,5 +1,4 @@
 import { Book } from '../../models/Book'
-import { getBookForId, saveBook } from '../../controllers/Books';
 import { Message } from '../../helpers/Message';
 import { checkAndReturnMessageError, CustomError } from '../../helpers/Errors';
 import { validateBook } from '../../validators/Book/book.validator';
@@ -12,20 +11,20 @@ export class BookPutService {
     constructor(id: string, attibrutes: Book) {
         this.id = id;
         this.newAttributes = attibrutes;
-        this.book = getBookForId(this.id);
+        // this.book = getBookForId(this.id);
     }
 
-    execute(): Message {
-        try {
-            this.setAttributes();
-            console.log(this.newAttributes)
-            validateBook(this.newAttributes);
-            saveBook(this.newAttributes);
-            return new Message("Book updated successfully", 200);
-        }catch (e) {
-            return checkAndReturnMessageError(e);
-        }
-    }
+    // execute(): Message {
+    //     try {
+    //         this.setAttributes();
+    //         console.log(this.newAttributes)
+    //         validateBook(this.newAttributes);
+    //         saveBook(this.newAttributes);
+    //         return new Message("Book updated successfully", 200);
+    //     }catch (e) {
+    //         return checkAndReturnMessageError(e);
+    //     }
+    // }
 
     private setAttributes() {
         if(!this.book) throw new CustomError("Not found book");

@@ -8,6 +8,7 @@ export interface BookAttributes {
     review?: string;
     urlImage?: string;
     status?: StatesBook;
+    rating?: number;
 }
 
 export class Book implements BookAttributes {
@@ -17,6 +18,7 @@ export class Book implements BookAttributes {
     synopse: string;
     review: string;
     urlImage: string;
+    rating: number;
 
     constructor(atributtes: BookAttributes) {
         this.id = atributtes.id;
@@ -25,5 +27,6 @@ export class Book implements BookAttributes {
         this.synopse = atributtes.synopse || "";
         this.review = atributtes.review || "";
         this.urlImage = atributtes.urlImage || "";
+        this.rating = atributtes.rating || 0;
     }
 }

@@ -41,7 +41,12 @@ const bookSchema: JSONSchemaType<BookAttributes> = {
       enum: Object.values(StatesBook),
       nullable: true,
       errorMessage: { type: "Invalid status: type String" }
-    }
+    },
+    rating: {
+      type: "number",
+      nullable: true,
+      errorMessage: { type: "Invalid status: type Number" }
+    },
   },
   required: ["title"],
   additionalProperties: false,

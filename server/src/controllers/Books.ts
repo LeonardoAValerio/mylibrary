@@ -1,38 +1,37 @@
 import fs from 'fs';
 import { Book } from '../models/Book';
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
+import { BookService } from '../services/Book';
+import { Message } from '../helpers/Message';
 
 const bookController = Router();
 
-function getBooksRaw(): any {
-    const dbString = fs.readFileSync("src/json/books.json", { encoding: "utf-8" });
-    const db = JSON.parse(dbString);
-    return db.books;
-}
-
-export function getBooks(): Book[] {
-    const books = getBooksRaw();
-    return Object.values(books);
-}
-
-export function getBookForId(id: string): Book | null {
-    const books = getBooksRaw();
-    return books[id] || null;
-}
-
-export function saveBook(book: Book) {
-    const books = getBooksRaw();
-    books[book.id] = book;
-    fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
-}
-
-export function deleteBookForId(id: string) {
-    const books = getBooksRaw();
-    const bookToDelete = getBookForId(id);
-    if(bookToDelete) {
-        delete books[id];
-        fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
+bookController.get("/", async (req: Request, res: Response) => {
+    try {
+        const books = await BookService.getBooks();
+        res.send(books);
+    }catch(e) {
+        res.send(new Message(e.message, 400))
     }
-}
+});
+
+bookController.get("/:id", async (req: Request, res: Response) => {
+    try {
+        const serchId = req.params.id;
+        const books = await BookService.getBookForID(serchId);
+        res.send(books);
+    }catch(e) {
+        res.status(400).send({message: "Not found"})
+    }
+});
+
+bookController.post("/", async (req: Request, res: Response) => {
+    try {
+        await BookService.postBook(req.body);
+        res.send({message: "Salvo com sucesso!"});
+    }catch(e) {
+        res.status(400).send({message: e.message})
+    }
+});
 
 export default bookController;
