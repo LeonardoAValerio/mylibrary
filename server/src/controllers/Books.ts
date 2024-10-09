@@ -1,5 +1,8 @@
 import fs from 'fs';
 import { Book } from '../models/Book';
+import { Router } from 'express';
+
+const bookController = Router();
 
 function getBooksRaw(): any {
     const dbString = fs.readFileSync("src/json/books.json", { encoding: "utf-8" });
@@ -31,3 +34,5 @@ export function deleteBookForId(id: string) {
         fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
     }
 }
+
+export default bookController;
