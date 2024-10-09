@@ -7,6 +7,7 @@ import { BookPutService } from "./services/Books/put";
 import cors from "cors";
 import { BookDeleteService } from "./services/Books/delete";
 import { query } from "./db";
+import { BookRepositorie } from "./database/BookRepositorie";
 
 const app = express();
 
@@ -15,10 +16,20 @@ app.use(json());
 
 app.get("/books", async (req: Request, res: Response) => {
     try {
-        const result = await query("SELECT * FROM books");
-        res.send(result.rows);
+        const books = await BookRepositorie.selectAll();
+        res.send(books);
     } catch(e) {
 
+    }
+});
+
+app.get("/books/:id", async (req: Request, res: Response) => {
+    try {
+        const serchId = req.params.id;
+        const book = await BookRepositorie.selectById(serchId);
+        res.send(book);
+    } catch(e) {
+        res.send("nOT FOUNDE!")
     }
 });
 
