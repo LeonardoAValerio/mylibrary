@@ -23,19 +23,25 @@ export class BookService {
         await BookRepositorie.createBook(book);
     }
 
-    static async updateBook(id:string, req: any) {
+    static async updateBook(id: string, req: any) {
         const book = await this.getBookForID(id);
         if(!book) throw new CustomError("Not found book");
         const keys = Object.keys(book);
 
+        //TODO: Melhorar Lógica de Update de Livro, e ajustar a validação do ID
         for(const key of keys) {
             if(req[key]) {
                 book[key] = req[key];
                 validateBook(book);
-                //TODO: Melhorar a validação de ID
                 if(!Uuid.validateUuid(book.id)) throw new CustomError("Invalid ID");
-                await BookRepositorie.updateBook({propertie: key, value: req[key]}, {propertie: "id", value: book["id"]});
+                await BookRepositorie.updateBook({propertie: key, value: req[key]}, id);
             }
         }
+    }
+
+    static async deleteBook(id: string) {
+        const book = await this.getBookForID(id);
+        if(!book) throw new CustomError("Not found book");
+        await BookRepositorie.deleteBook(id);
     }
 }

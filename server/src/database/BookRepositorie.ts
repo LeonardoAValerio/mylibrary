@@ -19,9 +19,13 @@ export class BookRepositorie {
         await query("INSERT INTO books values($1, $2, $3, $4, $5, $6, $7)", params);
     }
 
-    static async updateBook(set: {propertie: string, value:any}, id: {propertie: string, value:any}) {
-        const queryText = `UPDATE books SET ${set.propertie} = $1 WHERE ${id.propertie} = $2`
-        const params = [set.value, id.value];
+    static async updateBook(set: {propertie: string, value:any}, id: string) {
+        const queryText = `UPDATE books SET ${set.propertie} = $1 WHERE id = $2`
+        const params = [set.value, id];
         await query(queryText, params)
+    }
+
+    static async deleteBook(id: string) {
+        await query("DELETE from books WHERE id = $1", [id]);
     }
 }

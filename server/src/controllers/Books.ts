@@ -14,8 +14,8 @@ bookController.get("/", async (req: Request, res: Response) => {
 
 bookController.get("/:id", async (req: Request, res: Response) => {
     try {
-        const serchId = req.params.id;
-        const books = await BookService.getBookForID(serchId);
+        const id = req.params.id;
+        const books = await BookService.getBookForID(id);
         res.send(books);
     }catch(e) {
         res.status(400).send({message: "Not found"});
@@ -25,7 +25,7 @@ bookController.get("/:id", async (req: Request, res: Response) => {
 bookController.post("/", async (req: Request, res: Response) => {
     try {
         await BookService.postBook(req.body);
-        res.send({message: "Salvo com sucesso!"});
+        res.send({message: "Saved successfully!"});
     }catch(e) {
         res.status(400).send({message: e.message});
     }
@@ -33,9 +33,19 @@ bookController.post("/", async (req: Request, res: Response) => {
 
 bookController.put("/:id", async (req: Request, res: Response) => {
     try {
-        const serchId = req.params.id;
-        await BookService.updateBook(serchId, req.body);
-        res.send({message: "Atualizado com sucesso!"});
+        const id = req.params.id;
+        await BookService.updateBook(id, req.body);
+        res.send({message: "Updated successfully!"});
+    }catch(e) {
+        res.status(400).send({message: e.message});
+    }
+});
+
+bookController.delete("/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        await BookService.deleteBook(id);
+        res.send({message: "Deleted successfully!"});
     }catch(e) {
         res.status(400).send({message: e.message});
     }
