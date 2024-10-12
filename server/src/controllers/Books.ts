@@ -1,8 +1,5 @@
-import fs from 'fs';
-import { Book } from '../models/Book';
 import { Router, Request, Response } from 'express';
 import { BookService } from '../services/Book';
-import { Message } from '../helpers/Message';
 
 const bookController = Router();
 
@@ -11,7 +8,7 @@ bookController.get("/", async (req: Request, res: Response) => {
         const books = await BookService.getBooks();
         res.send(books);
     }catch(e) {
-        res.send(new Message(e.message, 400))
+        res.status(400).send({message: e.message});
     }
 });
 
@@ -21,7 +18,7 @@ bookController.get("/:id", async (req: Request, res: Response) => {
         const books = await BookService.getBookForID(serchId);
         res.send(books);
     }catch(e) {
-        res.status(400).send({message: "Not found"})
+        res.status(400).send({message: "Not found"});
     }
 });
 
@@ -30,7 +27,17 @@ bookController.post("/", async (req: Request, res: Response) => {
         await BookService.postBook(req.body);
         res.send({message: "Salvo com sucesso!"});
     }catch(e) {
-        res.status(400).send({message: e.message})
+        res.status(400).send({message: e.message});
+    }
+});
+
+bookController.put("/:id", async (req: Request, res: Response) => {
+    try {
+        const serchId = req.params.id;
+        await BookService.updateBook(serchId, req.body);
+        res.send({message: "Atualizado com sucesso!"});
+    }catch(e) {
+        res.status(400).send({message: e.message});
     }
 });
 
