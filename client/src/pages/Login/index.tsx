@@ -2,7 +2,7 @@ import React from "react";
 import './login.css'
 import { Field } from "../../components/FieldForm";
 import { useNavigate } from "react-router-dom";
-import { ButtonNavigate } from "../../components/ButtonNavigate";
+import { Button } from "../../components/Button";
 
 export function Login() {
     const navigate = useNavigate();
@@ -24,10 +24,10 @@ export function Login() {
                         <label>Senha</label>
                         <input type="password" placeholder="Senha"></input>
                     </Field>
-                    <button className="button">Entrar</button>
+                    <Button color="var(--border-book-color)">Login</Button>
                 </form>
                 <br></br>
-                <ButtonNavigate path="/login/create-account">Criar conta</ButtonNavigate>
+                <Button path="/login/create-account">Criar conta</Button>
             </main>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import './create-account.css'
 import { Field } from "../../components/FieldForm";
-import { ButtonNavigate } from "../../components/ButtonNavigate";
+import { Button } from "../../components/Button";
 
 export function CreateAccount() {
     return (
@@ -25,10 +25,10 @@ export function CreateAccount() {
                         <label>Repetir a Senha</label>
                         <input type="password" placeholder="Senha"></input>
                     </Field>
-                    <button className="button">Cadastrar-se</button>
+                    <Button color="var(--border-book-color)">Cadastrar-se</Button>
                 </form>
                 <br></br>
-                <ButtonNavigate path="/login">Login</ButtonNavigate>
+                <Button path="/login">Login</Button>
             </main>
         </div>
     );
