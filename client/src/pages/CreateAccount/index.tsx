@@ -1,6 +1,7 @@
 import React from "react";
 import './create-account.css'
-import Field from "../../components/FieldForm";
+import { Field } from "../../components/FieldForm";
+import { ButtonNavigate } from "../../components/ButtonNavigate";
 
 export function CreateAccount() {
     return (
@@ -27,7 +28,7 @@ export function CreateAccount() {
                     <button className="button">Cadastrar-se</button>
                 </form>
                 <br></br>
-                <button className="button">Login</button>
+                <ButtonNavigate path="/login">Login</ButtonNavigate>
             </main>
         </div>
     );

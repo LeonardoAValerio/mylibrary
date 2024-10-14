@@ -6,11 +6,9 @@ interface FieldProps {
     children: ReactNode
 }
 
-const Field: FunctionComponent<FieldProps> = ({ children }) => {
+export const Field: FunctionComponent<FieldProps> = ({ children }) => {
     return (
     <div className="field">
         {children}
     </div>);
 }
-
-export default Field;
