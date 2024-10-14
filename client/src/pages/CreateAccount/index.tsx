@@ -1,25 +1,33 @@
 import React from "react";
-import './login.css'
+import './create-account.css'
 import Field from "../../components/FieldForm";
 
-export function Login() {
+export function CreateAccount() {
     return (
         <div className="align-login">
             <main className="login">
-                <h1>Login</h1>
+                <h1>Criar Conta</h1>
                 <form className="login-form">
                     <Field>
                         <label>Nome</label>
                         <input type="text" placeholder="Nome"></input>
                     </Field>
                     <Field>
+                        <label>Email</label>
+                        <input type="email" placeholder="Email"></input>
+                    </Field>
+                    <Field>
                         <label>Senha</label>
                         <input type="password" placeholder="Senha"></input>
                     </Field>
-                    <button className="button">Entrar</button>
+                    <Field>
+                        <label>Repetir a Senha</label>
+                        <input type="password" placeholder="Senha"></input>
+                    </Field>
+                    <button className="button">Cadastrar-se</button>
                 </form>
                 <br></br>
-                <button className="button">Criar conta</button>
+                <button className="button">Login</button>
             </main>
         </div>
     );
