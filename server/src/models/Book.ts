@@ -1,4 +1,3 @@
-import { Uuid } from '../helpers/Uuid';
 import { StatesBook } from '../helpers/StatesBookEnum';
 
 export interface BookAttributes {
