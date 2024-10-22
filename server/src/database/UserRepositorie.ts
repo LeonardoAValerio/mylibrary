@@ -14,18 +14,24 @@ export class UserRepositorie {
         return user;
     }
 
+    static async getUserByNameAndPassword(userAttributes: {name: string, password: string}) {
+        const result = await query("SELECT * FROM users where name = $1 and password = $2", [userAttributes.name, userAttributes.password]);
+        const user = new User(result.rows[0]);
+        return user;
+    }
+
     static async createUser(user: User) {
         const params = [user.id, user.name, user.email, user.password];
         await query("INSERT INTO users values($1, $2, $3, $4)", params);
     }
 
-    static async updateuser(set: {propertie: string, value:any}, id: string) {
+    static async updateUser(set: {propertie: string, value:any}, id: string) {
         const queryText = `UPDATE users SET ${set.propertie} = $1 WHERE id = $2`
         const params = [set.value, id];
         await query(queryText, params)
     }
 
-    static async deleteuser(id: string) {
+    static async deleteUser(id: string) {
         await query("DELETE from users WHERE id = $1", [id]);
     }
 }
