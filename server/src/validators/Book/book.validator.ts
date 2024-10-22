@@ -1,5 +1,4 @@
-import { AjvErrors, CustomError } from "../../helpers/Errors";
-import { Uuid } from "../../helpers/Uuid";
+import { AjvErrors } from "../../helpers/Errors";
 import { Book } from "../../models/Book";
 import { validateJSONBook } from "./bookValidation.schema";
 
