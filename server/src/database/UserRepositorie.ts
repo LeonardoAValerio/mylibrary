@@ -14,8 +14,8 @@ export class UserRepositorie {
         return user;
     }
 
-    static async getUserByNameAndPassword(userAttributes: {name: string, password: string}) {
-        const result = await query("SELECT * FROM users where name = $1 and password = $2", [userAttributes.name, userAttributes.password]);
+    static async getUserByName(name: string) {
+        const result = await query("SELECT * FROM users where name = $1", [name]);
         const user = new User(result.rows[0]);
         return user;
     }

@@ -29,7 +29,7 @@ const userSchema: JSONSchemaType<UserAttributes> = {
       errorMessage: { type: "Invalid review: type String" }
     },
   },
-  required: ["id", "name", "email", "password"],
+  required: ["name", "email", "password"],
   additionalProperties: false,
 };
 

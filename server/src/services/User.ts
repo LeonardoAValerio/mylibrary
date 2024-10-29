@@ -1,9 +1,12 @@
 import { UserRepositorie } from "../database/UserRepositorie";
-import { helperBookId } from "../helpers/Book";
 import { CustomError } from "../helpers/Errors";
-import { Uuid } from "../helpers/Uuid";
-import { Book } from "../models/Book";
-import { validateBook } from "../validators/Book/book.validator";
+import { helperUserId } from "../helpers/Ids";
+import { Message } from "../helpers/Message";
+import { comparePassword, hashPassword } from "../helpers/Passwords";
+import { generateToken } from "../helpers/Token";
+import { User } from "../models/User";
+import { validateUser } from "../validators/User/user.validator";
+
 
 export class UserService {
     static async getUsers() {
@@ -11,12 +14,22 @@ export class UserService {
         return users;
     }
 
-    static async getUserByNameAndPassword(userAttributes: {name: string, password: string}) {
-        const book = await UserRepositorie.getUserByNameAndPassword(userAttributes);
-        return book;
+    static async validateUserPassword(name: string, passwordReceived: string) {
+        const user = await UserRepositorie.getUserByName(name);
+        console.log(user);
+        const result = await comparePassword(passwordReceived, user.password);
+        console.log(result);
+        if(result) {
+            return generateToken({id: user.id});
+        }
+        throw new CustomError("Invalid password!");
     }
 
-    static async postUser() {
-        
+    static async postUser(data: any) {
+        validateUser(data);
+        const user = new User(data);
+        await helperUserId(user);
+        user.password = await hashPassword(user.password);
+        UserRepositorie.createUser(user);
     }
 }
