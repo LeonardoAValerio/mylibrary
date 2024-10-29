@@ -8,10 +8,6 @@ import { CustomError } from "../helpers/Errors";
 export function authTokenMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
         const authToken = req.headers.authtoken as string;
-    
-        if (!authToken) {
-            res.status(403).send({ message: "Invalid authToken!" });
-        }
 
         jwt.verify(authToken, enviorments.KEY_JWT, (err) => {
             if(err) throw new CustomError("Invalid token!")
