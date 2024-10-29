@@ -1,7 +1,6 @@
 import { UserRepositorie } from "../database/UserRepositorie";
 import { CustomError } from "../helpers/Errors";
 import { helperUserId } from "../helpers/Ids";
-import { Message } from "../helpers/Message";
 import { comparePassword, hashPassword } from "../helpers/Passwords";
 import { generateToken } from "../helpers/Token";
 import { User } from "../models/User";
@@ -16,9 +15,7 @@ export class UserService {
 
     static async validateUserPassword(name: string, passwordReceived: string) {
         const user = await UserRepositorie.getUserByName(name);
-        console.log(user);
         const result = await comparePassword(passwordReceived, user.password);
-        console.log(result);
         if(result) {
             return generateToken({id: user.id});
         }
