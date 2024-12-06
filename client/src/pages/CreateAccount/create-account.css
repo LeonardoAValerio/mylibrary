@@ -2,7 +2,8 @@
     min-width: 100vh;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items:center;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -26,5 +27,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.alerts {
+    max-width: 40vh;
+    display: flex;
     flex-direction: column;
 }

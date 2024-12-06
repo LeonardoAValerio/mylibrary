@@ -3,12 +3,23 @@ import './login.css'
 import { Field } from "../../components/FieldForm";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
+import axios from "axios";
+
+interface LoginAttributes {
+    name: string,
+    password: string
+}
 
 export function Login() {
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        const sendLogin = async (user: LoginAttributes) => {
+            const response = await axios.post(`http://localhost:8081/login/create-account`, user);
+            return response;
+        } 
 
+        
     }
 
     return (

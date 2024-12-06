@@ -18,14 +18,17 @@ const userSchema: JSONSchemaType<UserAttributes> = {
     },
     name: {
       type: "string",
+      minLength: 1,
       errorMessage: { type: "Invalid title: type String" }
     },
     email: {
       type: "string",
+      minLength: 6,
       errorMessage: { type: "Invalid synopse: type String" }
     },
     password: {
       type: "string",
+      minLength: 8,
       errorMessage: { type: "Invalid review: type String" }
     },
   },
