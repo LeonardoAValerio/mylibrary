@@ -22,9 +22,16 @@ export class UserService {
         throw new CustomError("Invalid password!");
     }
 
+    static async userEmailExist(email: string) {
+        const users = await this.getUsers();
+        const isHasEmailExist = users.some(user => user.email === email);
+        if(isHasEmailExist) throw new Error("User emails alredy exist!");
+    }
+
     static async postUser(data: any) {
         validateUser(data);
         const user = new User(data);
+        await this.userEmailExist(user.email);
         await helperUserId(user);
         user.password = await hashPassword(user.password);
         UserRepositorie.createUser(user);

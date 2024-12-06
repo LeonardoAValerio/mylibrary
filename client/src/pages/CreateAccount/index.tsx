@@ -67,7 +67,7 @@ export function CreateAccount() {
             if(result.data.statusCode === 201) {
                 setAlerts([{message: "Conta criada com sucesso! Volte para o menu e entre na sua conta!", type: AlertTypes.SUCCESS}]);
             }else {
-                setAlerts([{message: "Algo deu errado. Tente novamente mais tarde...", type: AlertTypes.FAILED}]);
+                setAlerts([{message: "Email de usuário já existe, ou algo deu errado!", type: AlertTypes.FAILED}]);
             }
         }
     }

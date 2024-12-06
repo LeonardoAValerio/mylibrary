@@ -4,7 +4,7 @@ import { User } from "../models/User";
 export class UserRepositorie {
     static async getAllUsers() {
         const result = await query("SELECT * FROM users");
-        const users = result.rows as User[];
+        const users = result.rows.map(user => new User(user))
         return users;
     }
 

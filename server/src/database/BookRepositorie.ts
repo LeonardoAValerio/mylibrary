@@ -4,7 +4,7 @@ import { Book } from "../models/Book";
 export class BookRepositorie {
     static async getAllBooks() {
         const result = await query("SELECT * FROM books");
-        const books = result.rows as Book[];
+        const books = result.rows.map(book => new Book(book))
         return books;
     }
 
