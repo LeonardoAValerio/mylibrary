@@ -1,19 +1,16 @@
 import { Router, Request, Response } from 'express';
 import { UserService } from '../services/User';
-import { User } from '../models/User';
 import { checkAndReturnMessageError } from '../helpers/Errors';
-import { Message } from '../helpers/Message';
 
 const loginController = Router();
 
 loginController.post("/", (async (req: Request, res: Response) => {
     try {
-        const user = new User(req.body);
-        const msg = await UserService.validateUserPassword(user.name, user.password);
+        const msg = await UserService.validateUserPassword(req.body.email, req.body.password);
         res.send(msg).status(200);
     } catch(e) {
         const msg = checkAndReturnMessageError(e);
-        res.send(msg).status(msg.statusCode);
+        res.status(msg.statusCode).send(msg);
     }
 }));
 

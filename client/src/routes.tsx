@@ -11,7 +11,7 @@ export default function AppRoutes() {
             <Routes>
                 <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}> </Route>
                 <Route path="/books/:id" element={<ProtectedRoute><BookDetails /></ProtectedRoute>}> </Route>
-                <Route path="/login" element={<Login />}> </Route>
+                <Route path="/login" element={<Login/>}> </Route>
                 <Route path="/login/create-account" element={<CreateAccount />}> </Route>
             </Routes>
         </BrowserRouter>

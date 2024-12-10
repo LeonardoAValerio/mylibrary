@@ -13,8 +13,8 @@ export class UserService {
         return users;
     }
 
-    static async validateUserPassword(name: string, passwordReceived: string) {
-        const user = await UserRepositorie.getUserByName(name);
+    static async validateUserPassword(email: string, passwordReceived: string) {
+        const user = await UserRepositorie.getUserByEmail(email);
         const result = await comparePassword(passwordReceived, user.password);
         if(result) {
             return generateToken({id: user.id});

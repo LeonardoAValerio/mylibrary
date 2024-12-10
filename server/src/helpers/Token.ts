@@ -10,6 +10,6 @@ class Token {
 }
 
 export function generateToken(payload: any): Token {
-    const token = jwt.sign(payload, enviorments.KEY_JWT);
+    const token = jwt.sign({...payload}, enviorments.KEY_JWT, {expiresIn: "24h"});
     return new Token(token);
 }

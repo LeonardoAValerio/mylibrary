@@ -11,9 +11,9 @@ export async function hashPassword(password: string) {
     }
 }
 
-export async function comparePassword(password: string, passwordToCompare: string) {
+export async function comparePassword(password: string, hash: string) {
     try {
-        return await bcrypt.compare(password, passwordToCompare);
+        return await bcrypt.compare(password, hash);
     } catch(e) {
         throw new CustomError("Error to compare the passwords")
     }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Book } from "../../components/Book"
 import './home.css'
+import { requisition } from '../../helpers/Requisition';
 
 export interface BookAttributes {
   id?: string;
@@ -17,7 +18,7 @@ export function Home() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/books');
+        const response = await requisition.get("books");
         setBooks(response.data);
       } catch (error) {
 

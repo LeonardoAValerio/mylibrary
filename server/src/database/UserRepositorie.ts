@@ -14,8 +14,8 @@ export class UserRepositorie {
         return user;
     }
 
-    static async getUserByName(name: string) {
-        const result = await query("SELECT * FROM users where name = $1", [name]);
+    static async getUserByEmail(email: string) {
+        const result = await query("SELECT * FROM users where email = $1", [email]);
         const user = new User(result.rows[0]);
         return user;
     }

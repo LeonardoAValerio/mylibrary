@@ -4,6 +4,7 @@ import { Field } from "../../components/FieldForm";
 import { Button } from "../../components/Button";
 import axios from "axios";
 import { Alert, AlertProps, AlertTypes } from "../../components/Alert";
+import { requisition } from "../../helpers/Requisition";
 
 interface UserAttributes {
     name: string;
@@ -52,7 +53,7 @@ export function CreateAccount() {
 
     const handleSubmit = async (e: any) => {
         const sendNewAccount = async (user: UserAttributes) => {
-            const response = await axios.post(`http://localhost:8081/login/create-account`, user);
+            const response = await requisition.post("login/create-account", user);;
             return response;
         } 
 
