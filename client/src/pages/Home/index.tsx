@@ -9,7 +9,7 @@ export interface BookAttributes {
   title?: string;
   synopse?: string;
   review?: string;
-  urlImage?: string;
+  url_image?: string;
 }
 
 export function Home() {
@@ -34,7 +34,7 @@ export function Home() {
       <div className='align-library'>
         <div className="library">
           {books.map((book) => (
-            <Book id={book.id} title={book.title} urlImage={book.urlImage}></Book>
+            <Book id={book.id} title={book.title} url_image={book.url_image}></Book>
           ))}
         </div>
       </div>

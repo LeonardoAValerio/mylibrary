@@ -31,10 +31,10 @@ const bookSchema: JSONSchemaType<BookAttributes> = {
       nullable: true,
       errorMessage: { type: "Invalid review: type String" }
     },
-    urlImage: {
+    url_image: {
       type: "string",
       nullable: true,
-      errorMessage: { type: "Invalid urlImage: type String" }
+      errorMessage: { type: "Invalid url_image: type String" }
     },
     status: {
       type: "string",
@@ -45,7 +45,12 @@ const bookSchema: JSONSchemaType<BookAttributes> = {
     rating: {
       type: "number",
       nullable: true,
-      errorMessage: { type: "Invalid status: type Number" }
+      errorMessage: { type: "Invalid rating: type Number" }
+    },
+    id_user: {
+      type: "string",
+      nullable: true,
+      errorMessage: { type: "Invalid id_user: type String" }
     },
   },
   required: ["title"],

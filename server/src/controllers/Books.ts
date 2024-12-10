@@ -1,16 +1,19 @@
 import { Router, Request, Response } from 'express';
 import { BookService } from '../services/Book';
 import { checkAndReturnMessageError } from '../helpers/Errors';
+import jwt from 'jsonwebtoken';
+import { DecodedToken } from '../helpers/Token';
 
 const bookController = Router();
 
 bookController.get("/", async (req: Request, res: Response) => {
     try {
-        const books = await BookService.getBooks();
-        res.send(books).status(200);
+        const decode = jwt.decode((req.headers.authorization as string)) as DecodedToken;
+        const books = await BookService.getBooks(decode.id);
+        res.status(200).send(books);
     }catch(e) {
         const msg = checkAndReturnMessageError(e);
-        res.send(msg).status(msg.statusCode);
+        res.status(msg.statusCode).send(msg);
     }
 });
 
@@ -27,7 +30,8 @@ bookController.get("/:id", async (req: Request, res: Response) => {
 
 bookController.post("/", async (req: Request, res: Response) => {
     try {
-        await BookService.postBook(req.body);
+        const decode = jwt.decode((req.headers.authorization as string)) as DecodedToken;
+        await BookService.postBook(req.body, decode.id);
         res.send({message: "Saved successfully!"}).status(201);
     }catch(e) {
         const msg = checkAndReturnMessageError(e);

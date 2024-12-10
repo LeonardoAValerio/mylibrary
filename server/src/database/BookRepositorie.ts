@@ -5,6 +5,7 @@ export class BookRepositorie {
     static async getAllBooks() {
         const result = await query("SELECT * FROM books");
         const books = result.rows.map(book => new Book(book))
+        console.log(books);
         return books;
     }
 
@@ -15,8 +16,9 @@ export class BookRepositorie {
     }
 
     static async createBook(book: Book) {
-        const params = [book.id, book.title, book.synopse, book.review, book.rating, book.urlImage, book.status];
-        await query("INSERT INTO books values($1, $2, $3, $4, $5, $6, $7)", params);
+        const params = [book.id, book.title, book.synopse, book.review, book.rating, book.url_image, book.status, book.id_user];
+        console.log(params)
+        await query("INSERT INTO books(id, title, synopse, review, rating, url_image, status, id_user) values($1, $2, $3, $4, $5, $6, $7, $8)", params);
     }
 
     static async updateBook(set: {propertie: string, value:any}, id: string) {
