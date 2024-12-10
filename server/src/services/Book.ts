@@ -7,11 +7,8 @@ import { validateBook } from "../validators/Book/book.validator";
 
 export class BookService {
     static async getBooks(id_user: string) {
-        const books = await BookRepositorie.getAllBooks();
-        const filteredBooks = books.filter(book => {
-            if(book.id_user === id_user) return book;
-        })
-        return filteredBooks;
+        const books = await BookRepositorie.getBooksForUser(id_user);
+        return books;
     }
 
     static async getBookForID(id_user: string, id: string) {
