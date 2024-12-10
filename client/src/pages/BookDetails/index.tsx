@@ -11,7 +11,6 @@ export function BookDetails() {
         const fetchBookId = async () => {
             try {
                 const response = await axios.get(`http://localhost:8081/books/${id}`);
-                console.log(response.data)
                 setBook(response.data);
               } catch (error) {
                 console.error(error)

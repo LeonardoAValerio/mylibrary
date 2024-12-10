@@ -12,7 +12,6 @@ export const ProtectedRoute: FunctionComponent<RouteProps> = ({ children }) => {
         try {
             const token = getCookie("authToken") as string;
             const decoded = jwtDecode<JwtPayload>(token);
-            console.log(decoded);
             if(!decoded || !decoded.exp) return false;
 
             const expiration = decoded.exp * 1000;
@@ -20,7 +19,6 @@ export const ProtectedRoute: FunctionComponent<RouteProps> = ({ children }) => {
 
             return now < expiration;
         } catch (e) {
-            console.log(e);
             return false;
         }
     }
