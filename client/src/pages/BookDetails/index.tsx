@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { BookAttributes } from '../Home';
+import { requisition } from '../../helpers/Requisition';
 
 export function BookDetails() {
     const {id} = useParams()
@@ -10,7 +11,7 @@ export function BookDetails() {
     useEffect(() => {
         const fetchBookId = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/books/${id}`);
+                const response = await requisition.get("books/" + id);
                 setBook(response.data);
               } catch (error) {
                 console.error(error)
