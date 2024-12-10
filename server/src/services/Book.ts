@@ -6,18 +6,18 @@ import { Book } from "../models/Book";
 import { validateBook } from "../validators/Book/book.validator";
 
 export class BookService {
-    static async getBooks(idUser: string) {
+    static async getBooks(id_user: string) {
         const books = await BookRepositorie.getAllBooks();
         const filteredBooks = books.filter(book => {
-            if(book.id_user === idUser) return book;
+            if(book.id_user === id_user) return book;
         })
         return filteredBooks;
     }
 
-    //TODO: Ele apenas poder buscar aqueles livros que são do usuário
-    static async getBookForID(id: string) {
-        const book = await BookRepositorie.getBookById(id);
-        return book;
+    static async getBookForID(id_user: string, id: string) {
+        const books = await BookService.getBooks(id_user);
+        const filteredBook = books.find(book => book.id === id);
+        return filteredBook;
     }
 
     static async postBook(req: any, id_user: string) {
@@ -28,9 +28,8 @@ export class BookService {
         await BookRepositorie.createBook(book);
     }
 
-    //TODO: Ele apenas poder alterar aqueles livros que são do usuário
-    static async updateBook(id: string, req: any) {
-        const book = await this.getBookForID(id);
+    static async updateBook(id_user: string, id: string, req: any) {
+        const book = await this.getBookForID(id_user, id);
         if(!book) throw new CustomError("Not found book");
         const keys = Object.keys(book);
 
@@ -46,8 +45,8 @@ export class BookService {
     }
 
     //TODO: Ele apenas poder deletar aqueles livros que são do usuário
-    static async deleteBook(id: string) {
-        const book = await this.getBookForID(id);
+    static async deleteBook(id_user: string, id: string) {
+        const book = await this.getBookForID(id_user, id);
         if(!book) throw new CustomError("Not found book");
         await BookRepositorie.deleteBook(id);
     }

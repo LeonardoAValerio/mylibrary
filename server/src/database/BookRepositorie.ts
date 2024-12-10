@@ -9,12 +9,6 @@ export class BookRepositorie {
         return books;
     }
 
-    static async getBookById(id: string) {
-        const result = await query("SELECT * FROM books where id = $1", [id]);
-        const book = new Book(result.rows[0]);
-        return book;
-    }
-
     static async createBook(book: Book) {
         const params = [book.id, book.title, book.synopse, book.review, book.rating, book.url_image, book.status, book.id_user];
         console.log(params)
