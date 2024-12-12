@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import './nav.css'
+import './addButton.css'
 import { useNavigate } from "react-router-dom"
 
 interface PropsAddButton {
@@ -14,7 +14,7 @@ export const AddButton: FunctionComponent<PropsAddButton> = ({pathAddPage}) => {
     }
 
     return (
-    <div className="button-add" onClick={handleClick}>
-        <div>+</div>
+    <div className="add-button" onClick={handleClick}>
+        <h2>+</h2>
     </div>);
 }

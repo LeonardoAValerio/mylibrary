@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Book } from "../../components/Book"
 import './home.css'
 import { requisition } from '../../helpers/Requisition';
-import { NavHome } from '../../components/NavHome';
 import { AddButton } from '../../components/AddButton';
+import { Page } from '../../components/StantardPage';
 
 export interface BookAttributes {
   id?: string;
@@ -31,8 +30,7 @@ export function Home() {
   }, []);
 
   return (
-    <div className='page'>
-      <NavHome></NavHome>
+    <Page>
       <main className="home">
         <h1>Livros:</h1>
         <div className='align-library'>
@@ -44,6 +42,6 @@ export function Home() {
         </div>
         <AddButton pathAddPage='/books/create'></AddButton>
       </main>
-    </div>
+    </Page>
   );
 }

@@ -4,6 +4,7 @@ import { BookDetails } from "./pages/BookDetails";
 import { Login } from "./pages/Login";
 import { CreateAccount } from "./pages/CreateAccount";
 import { ProtectedRoute } from "./security/ProtectedAccesedRoutes";
+import { CreateBook } from "./pages/CreateBook";
 
 export default function AppRoutes() {
     return (
@@ -11,7 +12,7 @@ export default function AppRoutes() {
             <Routes>
                 <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}> </Route>
                 <Route path="/books/:id" element={<ProtectedRoute><BookDetails /></ProtectedRoute>}> </Route>
-                <Route path="/books/:id" element={<ProtectedRoute><BookDetails /></ProtectedRoute>}> </Route>
+                <Route path="/books/create" element={<ProtectedRoute><CreateBook /></ProtectedRoute>}> </Route>
                 <Route path="/login" element={<Login/>}> </Route>
                 <Route path="/login/create-account" element={<CreateAccount />}> </Route>
             </Routes>

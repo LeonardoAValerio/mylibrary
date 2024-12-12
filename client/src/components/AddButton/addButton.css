@@ -6,4 +6,9 @@
     align-items: center;
     justify-content: center;
     background-color: var(--theme-color);
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    border-radius: 50%;
+    cursor: pointer;
 }

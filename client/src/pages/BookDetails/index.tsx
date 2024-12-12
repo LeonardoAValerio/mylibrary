@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { BookAttributes } from '../Home';
 import { requisition } from '../../helpers/Requisition';
-import { NavHome } from '../../components/NavHome';
 import "./bookDetails.css"
 import { Field } from '../../components/FieldForm';
+import { Page } from '../../components/StantardPage';
 
 export function BookDetails() {
     const {id} = useParams()
@@ -25,8 +24,7 @@ export function BookDetails() {
     }, [id]);
 
     return (
-        <div className="page">
-            <NavHome></NavHome>
+        <Page>
             <main className='book-details'>
                 <form>
                     <Field>
@@ -35,6 +33,6 @@ export function BookDetails() {
                     </Field>
                 </form>
             </main>
-        </div>
+        </Page>
     );
 }
