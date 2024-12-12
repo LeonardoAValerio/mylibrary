@@ -1,19 +1,17 @@
 .home {
-    max-width: 960px;
-    margin: 0 auto;
+    width: 100%;
     min-height: 100vh;
-    background-color: azure;
+    background-color: var(--backgroud-color);
     padding: 24px;
 }
 
 .align-library {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 }
 
 .library {
-    margin: 24px;
     display: flex;
     justify-content: baseline;
     align-items: center;

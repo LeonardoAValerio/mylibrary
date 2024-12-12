@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { BookAttributes } from '../Home';
 import { requisition } from '../../helpers/Requisition';
+import { NavHome } from '../../components/NavHome';
+import "./bookDetails.css"
+import { Field } from '../../components/FieldForm';
 
 export function BookDetails() {
     const {id} = useParams()
@@ -22,8 +25,16 @@ export function BookDetails() {
     }, [id]);
 
     return (
-        <div>
-            <h1>{book.title}</h1>
+        <div className="page">
+            <NavHome></NavHome>
+            <main className='book-details'>
+                <form>
+                    <Field>
+                        <label>Title</label>
+                        <h1>{book.title}</h1>
+                    </Field>
+                </form>
+            </main>
         </div>
     );
 }

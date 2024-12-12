@@ -1,0 +1,14 @@
+.nav-home {
+    min-height: 100%;
+    padding: 16px;
+    width: 240px;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    background-color: var(--menus-color);
+}
+
+.options {
+    margin-top: 8px;
+    width: 100%;
+}

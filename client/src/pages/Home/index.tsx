@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Book } from "../../components/Book"
 import './home.css'
 import { requisition } from '../../helpers/Requisition';
+import { NavHome } from '../../components/NavHome';
+import { AddButton } from '../../components/AddButton';
 
 export interface BookAttributes {
   id?: string;
@@ -29,15 +31,19 @@ export function Home() {
   }, []);
 
   return (
-    <main className="home">
-      <h1>Livros:</h1>
-      <div className='align-library'>
-        <div className="library">
-          {books.map((book) => (
-            <Book id={book.id} title={book.title} url_image={book.url_image}></Book>
-          ))}
+    <div className='page'>
+      <NavHome></NavHome>
+      <main className="home">
+        <h1>Livros:</h1>
+        <div className='align-library'>
+          <div className="library">
+            {books.map((book) => (
+              <Book id={book.id} title={book.title} url_image={book.url_image}></Book>
+            ))}
+          </div>
         </div>
-      </div>
-    </main>
+        <AddButton pathAddPage='/books/create'></AddButton>
+      </main>
+    </div>
   );
 }

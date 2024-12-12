@@ -1,0 +1,21 @@
+.option-nav {
+    list-style-type: none;
+    background-color: var(--backgroud-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 36px;
+    border-radius:16px;
+    cursor: pointer;
+}
+
+.option-nav img {
+    height: 50%;
+    width: 24px;
+}
+
+.option-nav h4 {
+    color: var(--text-color);
+    font-weight: 400;
+}

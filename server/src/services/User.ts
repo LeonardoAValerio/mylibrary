@@ -17,7 +17,7 @@ export class UserService {
         const user = await UserRepositorie.getUserByEmail(email);
         const result = await comparePassword(passwordReceived, user.password);
         if(result) {
-            return generateToken({id: user.id});
+            return generateToken({id: user.id, name: user.name});
         }
         throw new CustomError("Invalid password!");
     }
