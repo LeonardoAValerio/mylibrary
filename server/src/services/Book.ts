@@ -23,6 +23,7 @@ export class BookService {
         await helperBookId(book);
         if(book.id_user === "") book.id_user = id_user;
         await BookRepositorie.createBook(book);
+        return book;
     }
 
     static async updateBook(id_user: string, id: string, req: any) {

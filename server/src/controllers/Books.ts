@@ -27,8 +27,8 @@ bookController.get("/:id", async (req: Request, res: Response) => {
 
 bookController.post("/", async (req: Request, res: Response) => {
     try {
-        await BookService.postBook(req.body, req.user_id);
-        res.send({message: "Saved successfully!"}).status(201);
+        const bookSaved = await BookService.postBook(req.body, req.user_id);
+        res.status(201).send(bookSaved);
     }catch(e) {
         const msg = checkAndReturnMessageError(e);
         res.status(msg.statusCode).send(msg);
