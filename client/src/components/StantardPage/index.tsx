@@ -1,5 +1,6 @@
 import { FunctionComponent, ReactNode } from "react"
 import { NavHome } from "../NavHome";
+import "./page.css"
 
 interface PageProps {
     children: ReactNode
