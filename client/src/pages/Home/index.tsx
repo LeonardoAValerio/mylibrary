@@ -4,14 +4,7 @@ import './home.css'
 import { requisition } from '../../helpers/Requisition';
 import { AddButton } from '../../components/AddButton';
 import { Page } from '../../components/StantardPage';
-
-export interface BookAttributes {
-  id?: string;
-  title?: string;
-  synopse?: string;
-  review?: string;
-  url_image?: string;
-}
+import { BookAttributes } from '../../helpers/models/Book';
 
 export function Home() {
   const [books, setBooks] = useState<BookAttributes[]>([]);

@@ -2,7 +2,7 @@ import { FunctionComponent } from "react"
 import './alert.css'
 
 export enum AlertTypes {
-    SUCCESS = "#50FA7B", FAILED = "#FF5555"
+    SUCCESS = "#50FA7B", FAILED = "#FF5555", NULL = ""
 }
 
 export interface AlertProps {

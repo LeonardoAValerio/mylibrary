@@ -3,3 +3,11 @@
     width: 75%;
     margin: 0 auto;
 }
+
+.create-book-page form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}

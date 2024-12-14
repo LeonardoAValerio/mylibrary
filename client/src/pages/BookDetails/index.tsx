@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { BookAttributes } from '../Home';
 import { requisition } from '../../helpers/Requisition';
 import "./bookDetails.css"
 import { Field } from '../../components/FieldForm';
 import { Page } from '../../components/StantardPage';
+import { BookAttributes } from '../../helpers/models/Book';
 
 export function BookDetails() {
     const {id} = useParams()
