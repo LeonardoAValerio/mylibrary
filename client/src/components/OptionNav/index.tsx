@@ -6,13 +6,15 @@ interface OptionNavProps {
     key: string,
     path: string,
     icon: string,
+    functionRequest?: CallableFunction
     children: any
 }
 
-export const OptionNav: FunctionComponent<OptionNavProps> = ({key, path, icon, children}) => {
+export const OptionNav: FunctionComponent<OptionNavProps> = ({key, path, icon, functionRequest, children}) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        if(functionRequest) functionRequest();
         navigate(path);
     }
 

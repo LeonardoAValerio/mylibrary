@@ -12,3 +12,7 @@
     margin-top: 8px;
     width: 100%;
 }
+
+.options div {
+    margin: 8px 0;
+}
