@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactNode } from "react"
-import { NavHome } from "../NavHome";
+import { NavHome } from "../Nav";
 import "./page.css"
 
 interface PageProps {
@@ -10,6 +10,7 @@ export const Page: FunctionComponent<PageProps> = ({ children }) => {
     return (
     <div className="page">
         <NavHome></NavHome>
+        <div className="space-from-nav"></div>
         {children}
     </div>);
 }
