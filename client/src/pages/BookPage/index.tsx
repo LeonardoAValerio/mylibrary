@@ -8,6 +8,8 @@ import { BookAttributes, RatingBook, StatusBook } from '../../helpers/models/Boo
 import { Img } from '../../components/Img';
 import { Alert, AlertProps, AlertTypes } from '../../components/Alert';
 import { useParams } from 'react-router-dom';
+import { Header } from '../../components/Header';
+import { OptionHeader } from '../../components/OptionHeader';
 
 export function BookPage() {
   const {id} = useParams();
@@ -28,14 +30,12 @@ export function BookPage() {
     try {
       const result = await requisition.get("books/" + id);
       setBook(result.data);
-      console.log(book);
     } catch (error) {
       console.log(error);
     }
   }
 
   const postBook = async () => {
-    console.log("POST");
     try {
       await requisition.post("books/", book);
       setResultRequisition({message: "Livro criado com sucesso!", type: AlertTypes.SUCCESS});
@@ -46,8 +46,8 @@ export function BookPage() {
   }
 
   const putBook = async () => {
-    console.log("PUT");
     try {
+      console.log(book);
       await requisition.put("books/" + book.id, book);
       setResultRequisition({message: "Livro atualizado com sucesso!", type: AlertTypes.SUCCESS});
     } catch (error) {
@@ -56,19 +56,35 @@ export function BookPage() {
     }
   }
 
+  const deleteBook = async () => {
+    try {
+      await requisition.delete("books/" + book.id);
+      setResultRequisition({message: "Livro deletado com sucesso!", type: AlertTypes.SUCCESS});
+    } catch (error) {
+      console.log(error);
+      setResultRequisition({message: "Algo deu errado, tente novamente!", type: AlertTypes.FAILED});
+    }
+  }
+
   const handleInputChange = (field: keyof BookAttributes) => 
     (event: any) => {
-      const value = event.target.value;
+      const value = field === "rating" ? parseInt(event.target.value) : event.target.value;
       setBook((prevBook) => ({
         ...prevBook,
         [field]: value,
       }));
       if(field === "url_image") setImgBook(value);
+
   };
 
   return (
     <Page>
-      <main className='create-book-page'>
+      <main className='book-page'>
+        <Header name={isNewBook ? "Criando livro" : (book.title ?? "")} isReturnable={true}>
+          <OptionHeader runFunction={() => {
+            deleteBook()
+          }}>Deletar</OptionHeader>
+        </Header>
         <form>
           <Field sizeInPercent='100%'>
             <label>Titulo</label>

@@ -1,6 +1,6 @@
 .page {
     display: grid;
-    grid-template-columns: 15% 1fr; /* 200px para NAV e o restante para MAIN */
+    grid-template-columns: 240px 1fr; /* 200px para NAV e o restante para MAIN */
     margin: 0;
     height: 100vh;
 }

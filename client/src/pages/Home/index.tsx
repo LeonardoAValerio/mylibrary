@@ -5,6 +5,7 @@ import { requisition } from '../../helpers/Requisition';
 import { AddButton } from '../../components/AddButton';
 import { Page } from '../../components/StantardPage';
 import { BookAttributes } from '../../helpers/models/Book';
+import { Header } from '../../components/Header';
 
 export function Home() {
   const [books, setBooks] = useState<BookAttributes[]>([]);
@@ -25,7 +26,7 @@ export function Home() {
   return (
     <Page>
       <main className="home">
-        <h1>Livros:</h1>
+        <Header name='Livros'></Header>
         <div className='align-library'>
           <div className="library">
             {books.map((book) => (

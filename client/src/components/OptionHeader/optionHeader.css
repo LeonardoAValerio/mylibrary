@@ -1,0 +1,7 @@
+.option-header {
+    cursor: pointer;
+    border-color: #000;
+    border: 1px solid #000;
+    padding: 8px;
+    width: 100%;
+}

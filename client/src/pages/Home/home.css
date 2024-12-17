@@ -1,9 +1,9 @@
 .home {
     background-color: var(--backgroud-color);
-    padding: 24px;
 }
 
 .align-library {
+    padding: 24px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -11,7 +11,7 @@
 
 .library {
     display: flex;
-    justify-content: baseline;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }

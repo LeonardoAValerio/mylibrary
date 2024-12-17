@@ -8,6 +8,6 @@ export interface BookAttributes {
     review?: string,
     url_image?: string,
     status?: StatusBook,
-    rating?: RatingBook,
+    rating?: number,
     id_user?: string
 }

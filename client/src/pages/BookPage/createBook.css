@@ -1,9 +1,8 @@
-.create-book-page {
+
+
+.book-page form {
     padding: 24px;
     margin: 0 auto;
-}
-
-.create-book-page form {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
