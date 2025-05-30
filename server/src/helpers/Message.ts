@@ -3,7 +3,6 @@ interface MessageAttributes {
     statusCode: number;
 }
 
-
 export class Message implements MessageAttributes {
     message: any;
     statusCode: number;

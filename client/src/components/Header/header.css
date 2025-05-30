@@ -1,0 +1,35 @@
+.header {
+    background-color: var(--border-book-color);
+    padding: 16px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100vw - 240px);
+    height: 64px;
+}
+
+.header-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.space-header {
+    width: 100%;
+    height: 64px;
+}
+
+.options-header {
+    position: absolute;
+    right: 0px;
+    top: 64px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:  wrap;
+    background-color: var(--border-book-color);
+}

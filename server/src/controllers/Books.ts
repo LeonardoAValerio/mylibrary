@@ -1,33 +1,60 @@
-import fs from 'fs';
-import { Book } from '../models/Book';
+import { Router, Request, Response } from 'express';
+import { BookService } from '../services/Book';
+import { checkAndReturnMessageError } from '../helpers/Errors';
 
-function getBooksRaw(): any {
-    const dbString = fs.readFileSync("src/json/books.json", { encoding: "utf-8" });
-    const db = JSON.parse(dbString);
-    return db.books;
-}
+const bookController = Router();
 
-export function getBooks(): Book[] {
-    const books = getBooksRaw();
-    return Object.values(books);
-}
-
-export function getBookForId(id: string): Book | null {
-    const books = getBooksRaw();
-    return books[id] || null;
-}
-
-export function saveBook(book: Book) {
-    const books = getBooksRaw();
-    books[book.id] = book;
-    fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
-}
-
-export function deleteBookForId(id: string) {
-    const books = getBooksRaw();
-    const bookToDelete = getBookForId(id);
-    if(bookToDelete) {
-        delete books[id];
-        fs.writeFileSync("src/json/books.json", JSON.stringify({ books }));
+bookController.get("/", async (req: Request, res: Response) => {
+    try {
+        const books = await BookService.getBooks(req.user_id);
+        res.status(200).send(books);
+    }catch(e) {
+        const msg = checkAndReturnMessageError(e);
+        res.status(msg.statusCode).send(msg);
     }
-}
+});
+
+bookController.get("/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const book = await BookService.getBookForID(req.user_id, id);
+        res.status(200).send(book ?? {message: "Not found book"});
+    }catch(e) {
+        const msg = checkAndReturnMessageError(e);
+        res.status(msg.statusCode).send(msg);
+    }
+});
+
+bookController.post("/", async (req: Request, res: Response) => {
+    try {
+        const bookSaved = await BookService.postBook(req.body, req.user_id);
+        res.status(201).send(bookSaved);
+    }catch(e) {
+        const msg = checkAndReturnMessageError(e);
+        res.status(msg.statusCode).send(msg);
+    }
+});
+
+bookController.put("/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        await BookService.updateBook(req.user_id, id, req.body);
+        res.status(200).send({message: "Updated successfully!"});
+    }catch(e) {
+        const msg = checkAndReturnMessageError(e);
+        res.status(msg.statusCode).send(msg);
+    }
+});
+
+bookController.delete("/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        await BookService.deleteBook(req.user_id, id);
+        res.status(200).send({message: "Deleted successfully!"});
+    }catch(e) {
+        const msg = checkAndReturnMessageError(e);
+        res.status(msg.statusCode).send(msg);
+    }
+});
+
+export default bookController;

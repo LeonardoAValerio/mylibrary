@@ -1,0 +1,22 @@
+.user-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: 64px;
+    overflow-x: hidden;
+    text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+    white-space: nowrap; /* Evita quebra de linha, opcional com ellipsis */
+}
+
+.user-component img {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+}
+
+.user-component h3 {
+    font-size: 24px;
+}
+

@@ -1,13 +1,14 @@
-import { Uuid } from '../helpers/Uuid';
-import { StatesBook } from './StatesBookEnum';
+import { StatesBook } from '../helpers/StatesBookEnum';
 
 export interface BookAttributes {
-    id: string;
-    title: string;
-    synopse?: string;
-    review?: string;
-    urlImage?: string;
-    status?: StatesBook;
+    id: string,
+    title: string,
+    synopse?: string,
+    review?: string,
+    url_image?: string,
+    status?: StatesBook,
+    rating?: number,
+    id_user?: string
 }
 
 export class Book implements BookAttributes {
@@ -16,7 +17,9 @@ export class Book implements BookAttributes {
     status: StatesBook;
     synopse: string;
     review: string;
-    urlImage: string;
+    url_image: string;
+    rating: number;
+    id_user: string;
 
     constructor(atributtes: BookAttributes) {
         this.id = atributtes.id;
@@ -24,6 +27,8 @@ export class Book implements BookAttributes {
         this.status = atributtes.status || StatesBook.TOREAD;
         this.synopse = atributtes.synopse || "";
         this.review = atributtes.review || "";
-        this.urlImage = atributtes.urlImage || "";
+        this.url_image = atributtes.url_image || "";
+        this.rating = atributtes.rating || 0;
+        this.id_user = atributtes.id_user || "";
     }
 }

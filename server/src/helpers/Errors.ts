@@ -1,5 +1,5 @@
 import { ErrorObject } from "ajv";
-import { Message } from "../models/Message";
+import { Message } from "./Message";
 
 export class CustomError extends Error {
     constructor(message: string) {
@@ -29,5 +29,5 @@ export function checkAndReturnMessageError(e: Error): Message {
     }else if(e instanceof AjvErrors) {
         return new Message({message: e.message, errors: e.errors}, 400);
     }
-    return new Message(e.message, 400);
+    return new Message(e.message, 500);
 }
